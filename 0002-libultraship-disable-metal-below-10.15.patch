@@ -1,0 +1,17 @@
+diff --git a/src/fast/backends/gfx_metal.cpp b/src/fast/backends/gfx_metal.cpp
+index 00eaedb..c07ee9d 100644
+--- a/src/fast/backends/gfx_metal.cpp
++++ b/src/fast/backends/gfx_metal.cpp
+@@ -1286,6 +1286,12 @@ bool Metal_IsSupported() {
+     // iOS always supports Metal and MTLCopyAllDevices is not available
+     return true;
+ #else
++    // The Metal backend relies on APIs that only exist on macOS 10.15+ (e.g. MTLDevice supportsFamily:).
++    // On older systems report Metal as unsupported so the OpenGL backend is used instead.
++    if (!__builtin_available(macOS 10.15, *)) {
++        return false;
++    }
++
+     NS::Array* devices = MTLCopyAllDevices();
+     NS::UInteger count = devices->count();
+ 

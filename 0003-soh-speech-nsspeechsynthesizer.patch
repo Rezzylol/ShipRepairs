@@ -1,0 +1,45 @@
+diff --git a/soh/soh/Enhancements/speechsynthesizer/DarwinSpeechSynthesizer.mm b/soh/soh/Enhancements/speechsynthesizer/DarwinSpeechSynthesizer.mm
+index bd897e3d..ab1c63f6 100644
+--- a/soh/soh/Enhancements/speechsynthesizer/DarwinSpeechSynthesizer.mm
++++ b/soh/soh/Enhancements/speechsynthesizer/DarwinSpeechSynthesizer.mm
+@@ -6,8 +6,35 @@
+ //
+ 
+ #include "DarwinSpeechSynthesizer.h"
++#import <Foundation/Foundation.h>
+ #import <AVFoundation/AVFoundation.h>
+ 
++#if __MAC_OS_X_VERSION_MAX_ALLOWED < 101500
++// AVSpeechSynthesizer is not available in older macOS SDKs / on macOS < 10.15 (e.g. High Sierra).
++// Fall back to the older AppKit NSSpeechSynthesizer, which exists on every macOS version.
++#import <AppKit/AppKit.h>
++
++DarwinSpeechSynthesizer::DarwinSpeechSynthesizer() {}
++
++bool DarwinSpeechSynthesizer::DoInit() {
++    mSynthesizer = (__bridge_retained void*)[[NSSpeechSynthesizer alloc] init];
++    return true;
++}
++
++void DarwinSpeechSynthesizer::DoUninitialize() {
++    NSSpeechSynthesizer* synth = (__bridge_transfer NSSpeechSynthesizer*)mSynthesizer;
++    [synth stopSpeaking];
++    mSynthesizer = nullptr;
++}
++
++void DarwinSpeechSynthesizer::Speak(const char* text, const char* language) {
++    (void)language; // uses the system default voice
++    NSSpeechSynthesizer* synth = (__bridge NSSpeechSynthesizer*)mSynthesizer;
++    [synth stopSpeaking];
++    [synth startSpeakingString:@(text)];
++}
++#else
++
+ DarwinSpeechSynthesizer::DarwinSpeechSynthesizer() {}
+ 
+ bool DarwinSpeechSynthesizer::DoInit() {
+@@ -31,3 +58,4 @@ void DarwinSpeechSynthesizer::Speak(const char* text, const char* language) {
+     [(__bridge AVSpeechSynthesizer *)mSynthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+     [(__bridge AVSpeechSynthesizer *)mSynthesizer speakUtterance:utterance];
+ }
++#endif

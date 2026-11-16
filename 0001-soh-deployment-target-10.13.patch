@@ -1,0 +1,26 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index eb3c3875..645929cc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -4,7 +4,7 @@ set(CMAKE_SYSTEM_VERSION 10.0 CACHE STRING "" FORCE)
+ set(CMAKE_CXX_STANDARD 20 CACHE STRING "The C++ standard to use")
+ set(CMAKE_C_STANDARD 23 CACHE STRING "The C standard to use")
+ 
+-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version")
++set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13" CACHE STRING "Minimum OS X deployment version")
+ 
+ project(Ship VERSION 9.3.1 LANGUAGES C CXX)
+ include(CMake/soh-cvars.cmake)
+diff --git a/soh/macosx/Info.plist.in b/soh/macosx/Info.plist.in
+index 350c857f..920a14e1 100644
+--- a/soh/macosx/Info.plist.in
++++ b/soh/macosx/Info.plist.in
+@@ -32,7 +32,7 @@
+     <key>LSApplicationCategoryType</key>
+     <string>public.app-category.games</string>
+     <key>LSMinimumSystemVersion</key>
+-    <string>10.15</string>
++    <string>10.13</string>
+     <key>LSEnvironment</key>
+     <dict>
+         <key>SHIP_HOME</key>
