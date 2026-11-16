@@ -21,10 +21,9 @@ Developed against a 2013 MacBook Air (Intel, HD 5000 graphics).
 ## Status
 
 - [x] All sources compile on High Sierra with MacPorts clang 17
-- [ ] Final link succeeds with the linker flag in `build.sh`
-- [ ] Game launches and is playable
+- [x] Final link succeeds with the linker flag in `build.sh`
+- [x] Game launches and is playable
 
-Update these boxes as you confirm each step on your machine.
 
 ## What you need
 
@@ -109,7 +108,5 @@ Issues and pull requests are welcome. If you build this on another old macOS ver
 ## Credits and licence
 
 All credit for the game port goes to the [HarbourMasters](https://github.com/HarbourMasters/Shipwright) team and the [libultraship](https://github.com/Kenix3/libultraship) authors. This repo only contains small patches and a build script. It contains no Shipwright source, no binaries, no ROM and no game assets.
-
-The patches modify upstream files, so they are offered under the same terms as those files. See the upstream repositories for their licences. Add a `LICENSE` file for your own build script if you want one.
 
 *The Legend of Zelda: Ocarina of Time* is a trademark of Nintendo. You must provide your own legally obtained ROM.
