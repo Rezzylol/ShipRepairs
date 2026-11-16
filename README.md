@@ -1,5 +1,17 @@
 # Ship of Harkinian for macOS High Sierra (10.13)
 
+
+
+A quick non vibe'd note.
+i refuse to let my old macbook die, and love zelda.
+this hasnt been tested on any other computers nor osx versions.
+works fine on mine
+
+With love
+Rezzy <3
+
+
+
 Patches and a build script that compile [Ship of Harkinian](https://github.com/HarbourMasters/Shipwright) **9.3.1 "Dewey Bravo"** for **macOS 10.13 High Sierra** on Intel Macs. The official macOS release requires macOS 10.15 or later (and is built on Apple Silicon CI), so it won't run on older Macs.
 
 Developed against a 2013 MacBook Air (Intel, HD 5000 graphics).
@@ -25,7 +37,7 @@ Update these boxes as you confirm each step on your machine.
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/shipwright-high-sierra.git
+git clone https://github.com/Rezzylol/shipwright-high-sierra.git
 cd shipwright-high-sierra
 ./build.sh
 ```
